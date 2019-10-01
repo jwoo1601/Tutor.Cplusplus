@@ -1,0 +1,251 @@
+// Literals (or Values)
+// : contant values used within a program or a notation for representing a fixed value within a source code.
+
+int a = 053l;
+int b = 0x34u;
+
+/*
+	Integer literals
+
+	- Decimal numbers
+	: represented with digits between 0 and 9
+
+	- Octal numbers
+	: represented with digits between 0 and 7, prefixed with 0
+	e.g.
+	053 -> 053 in octal
+
+	- Hexadecimal numbers
+	: represented with digits between 0 and F(or f), prefixed with 0x or 0X
+
+	<Hex digits> Base10  ::  Base16
+	               0           0
+				   1           1
+				   2           2
+				   3           3
+				   4           4
+				   5           5
+				   6           6
+				   7           7
+				   8           8
+				   9           9
+				   10          A
+				   11          B
+				   12          C
+				   13          D
+				   14          E
+				   15          F
+
+	*     Base 8 <---> Base 10 <---> Base 16
+	e.g.    23             
+
+	- Size qualifiers (u or U, l or L)
+	: specifies the size or type of the value
+	-> u/U: unsigned
+	-> l/L: long
+*/
+
+/*
+	Float literals
+
+	- Decimal notation
+	: [+/-] [0-9].[0.9]
+	- Exponential notation
+	: [+/-] <Mantissa> <e/E> [+/-] <Exponent>
+	e.g. 2344e-2
+
+	- Size qualifiers (f or F, d or D)
+	-> f/F: float
+	-> d/D: double (default)
+*/
+
+/*
+	Character literals
+
+	- Single character
+	: placed inside '' (single quotes)
+
+	- Escape sequence
+	: same as single character, but prefixed with \
+	e.g. \n, \b, \t, \\
+	char c = '\b';
+
+	\500
+	\\
+
+	- ASCII code
+	: integer numbers representing characters in ASCII table
+	e.g. 'A' = 65
+
+	char c = 65;
+
+	- Octal or hex representation
+	: same as escape sequence
+	e.g. \05 \x1A
+
+	char c = '\054';
+
+	- Unicode value
+	: \0033
+*/
+
+/*
+	String literals
+	: placed within "" (double quotes), '\0' (null terminator) automatically appended at the end of the string
+	(zero or more character allowed)
+	e.g. "hello, world", "", "hi"
+
+	- concatenation
+	"this is" " C" ---> "this is C"
+
+	* multiline
+	"this is" \
+	" C" \
+	"!"
+
+	or
+
+	"this is\
+	 C\
+	!"
+
+	---> "this is C!"
+*/
+
+// Single-line comments
+// this is a single line comment
+
+// Multi-line comments
+/* 
+	this
+	is
+	a
+	multi
+	-line
+	comment
+*/
+
+// Constants
+// : used to declare variables whose values cannot be changed after initialization
+// const <type> <identifier> = <value>;
+// e.g. const unsigned c1 = 100u;
+// c1 = 200u; ---> illegal
+// immutability vs mutability
+//   constants       variable
+
+
+int main()
+{
+	const int max_money = 1000;
+	// ? < max_money
+	// ??? ?? max_money ?? ????? 
+	// ?? ??
+}
+
+
+/*
+	Enumerations (???)
+	
+	- declaration
+	: enum <identifier> { <tag1>=<value1>, <tag2>=<value2>, ... } <variable-name>...;
+	* first value defaults to 0 if not specified
+
+	- enum variables
+	: enum <enum-name> <identifier>;
+	* enum values are used by its name
+*/
+
+enum EState
+{
+	Idle = 500,
+	Working = 504,
+	Eating
+};
+
+int main()
+{
+	// 0 -> ???? 1-> ????? 2-> ?????
+	enum EState state = Idle;
+}
+
+
+#define MACRO_2 10 + 20
+
+int main()
+{
+#define MACRO_1 int ab=
+	MACRO_1 MACRO_2;
+
+#undef MACRO_1
+
+	int ab= 10 + 20;
+}
+
+/*
+	Preprocessors
+	: starts with #, "pre"-processed before compiling source code
+
+	#include <file-name>
+	: imports the specified file i.e. copies all the contents of the file to where #include is specified
+	e.g.
+	#include <stdio.h>  --> includes the file in "include path"
+	#include "header.h" --> includes the file relative to the current file
+	absolute path / relative path
+
+	#define <macro-name> [<body>]
+	: defines a macro constant or function
+	e.g.
+	#define SOURCE_C
+	#define VERSION 100
+	#define FILE_NAME "file.exe"
+	#define ADD_EXPR_1 (30+VERSION);
+
+	*usage:
+	int main()
+	{
+		FILE *fp = fopen(FILE_NAME, "a+");
+		fclose(fp);
+
+		int version_num = VERSION;
+		int result = ADD_EXPR_1
+		int result = (30+VERSION);
+	}
+
+	** macros are replaced in a literal manner
+	e.g.
+	#define MACRO_1 int ab=
+	#define MACRO_2 10 + 20
+
+	int main()
+	{
+		MACRO_1 50;  --> int ab= 50;
+		int res = MACRO_2 * 3;  --> int res = 10 + 20 * 3;
+	}
+
+	#undef <macro-name>
+	: undefines the macro named with <macro-name>
+
+	#if <expression>
+	...
+	[#elif <expression>
+	...
+	#else
+	...]
+	#endif
+
+	#ifdef <macro-name>
+	#endif
+
+	#ifndef <macro-name>
+	#endif
+
+	#if <expression>defined(<macro-name>)
+	#endif
+
+	#pragma
+	- once, warning, push, pop, error... -> compiler-specific
+*/
+
+/*
+	structs
+*/

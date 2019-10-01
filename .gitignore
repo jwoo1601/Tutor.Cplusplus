@@ -1,0 +1,12 @@
+projects/.vs
+projects/**/Debug
+projects/**/Release
+
+**/*.exe
+**/*.obj
+**/*.idb
+**/*.pdb
+**/*.log
+**/*.tlog
+**/*.vcxproj.filters
+**/*.vcxproj.user
