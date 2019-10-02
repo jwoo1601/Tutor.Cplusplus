@@ -108,7 +108,7 @@
   
   C++>
   - Exceptions
-  - Exception-safety and noexcept
+  - Try-catch block
   - Stack rewinding
   
 ## Lecture 12
@@ -120,3 +120,32 @@
   - Dynamic casting and Polymorphism
   - RTTI
   - C++ type casting (static_cast, reinterpret_cast, const_cast)
+  
+## Lecture 13
+  C>
+  - C File I/O
+  - Directories
+  
+  C++>
+  - Templates (function templates, class templates)
+  - Intro to template meta programming
+  - Const expressions and Compile-time behaviours
+  
+## Lecture 14
+  C>
+  - Search algorithms
+  - C search functions
+  
+  C++>
+  - Exception-safety and noexcept
+  - Auto keyword (C++11)
+  - Lambda functions and captures
+  
+## Lecture 15
+  C>
+  - Basic sort algorithms
+  - C sort functions
+  
+  C++>
+  - Templates in depth (non-type template parameters, template-template parameters, variadic template parameters, pack expansion)
+  - Instantiation and Specialization
