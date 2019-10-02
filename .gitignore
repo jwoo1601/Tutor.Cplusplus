@@ -1,6 +1,7 @@
 projects/.vs
 projects/**/Debug
 projects/**/Release
+activities
 
 **/*.exe
 **/*.obj
