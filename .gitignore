@@ -12,3 +12,5 @@ activities/**/Test.c**
 **/*.tlog
 **/*.vcxproj*
 **/*.sln
+
+setup
