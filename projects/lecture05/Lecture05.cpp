@@ -101,6 +101,15 @@ void _()
 }
 
 /*
+	OOP 의 특징
+
+	1. Encapsulation (캡슐화)
+	2. Privacy
+	3. Inheritance
+	4. Polymorphism
+*/
+
+/*
 	3. Access specifiers
 	: 클래스의 멤버들의 접근 수준(Access level)을 지정함.
 
