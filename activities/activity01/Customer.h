@@ -3,6 +3,7 @@
 
 #include <string>
 
+
 // 이 comment 아래에 적절한 헤더 파일을 포함해야 함 (자세한 내용은 Activity01.h 참조)
 
 class Customer

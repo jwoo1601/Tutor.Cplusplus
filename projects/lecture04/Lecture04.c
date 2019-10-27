@@ -141,5 +141,5 @@ void pass_by_address(int* address)
 }
 
 int m = 12;
-pass_by_address(m); // pass_by_address 함수는 parameter 인 address 를 주소에 의해 전달(이유: address가 pointer 기 때문)받기에 내부에서 address 가 가리키는 값을 변경하면 해당 값에 직접적인 영향을 미침.
+pass_by_address(&m); // pass_by_address 함수는 parameter 인 address 를 주소에 의해 전달(이유: address가 pointer 기 때문)받기에 내부에서 address 가 가리키는 값을 변경하면 해당 값에 직접적인 영향을 미침.
 printf("%d", m); // 위 함수 내에서 m 의 주소를 전달받기에 m에 직접적인 접근 후 m의 값을 변경. 그래서 m의 값은 이 경우 12가 아닌 6
