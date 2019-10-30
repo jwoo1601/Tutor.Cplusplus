@@ -179,13 +179,29 @@ void _2_1()
 
 	(2) const for pointers
 	: const 의 위치에 따라 의미하는 바가 달라짐.
-	const <type> * => 해당 포인터가 가리키는 "데이터"가 상수. 즉, 포인터를 역참조한 뒤 변경이 불가능함.
-	<type> const * => 위와 동일
-	<type> * const => 해당 포인터 "자체"가 상수. 즉, 포인터 자체에 변경이 불가능함.
+	const <type> * 이름 => 해당 포인터가 가리키는 "데이터"가 상수. 즉, 포인터를 역참조한 뒤 변경이 불가능함.
+	<type> const * 이름 => 위와 동일
+	<type> * const 이름 => 해당 포인터 "자체"가 상수. 즉, 포인터 자체에 변경이 불가능함.
+
+	const int const * const * const ptr;
 
 	(3) const for references
 	: 항상 const <type> &<identifier> 의 형태로만 쓰일 수 있으며, 레퍼런스 그 자체는 상수로 만드는게 의미가 없음. (이미 레퍼런스 자체가 선언 시부터 상수로 취급되므로)
 	 해당 레퍼런스가 가리키는 데이터 (혹은 variable) 이 상수임을 나타냄.
+	 
+	 const 가 맨 앞에있을떄는 오른쪽 수식
+	 그게 아니면 const 왼쪽 수식
+
+	 const int *
+	 int const *
+
+	 int * const ptr = &a;
+	 ptr = &b; (X)
+
+	 const |int |& ref
+
+	 int & const ref => 의미가 없음
+	 int * const ptr
 
 */
 
@@ -197,15 +213,16 @@ void _3()
 
 	// (2)
 	int a = 3, b = 4;
-	const int* pA = &a; // pointer to const
+	const int* pA = &a; // pointer to const (상수 포인터)
 	*pA = 10; // 오류
+	a = 5;
 	pA = &b; // 가능
 
-	int const* pB = &a; // pointer to const
+	int const* pB = &a; // pointer to const (상수 포인터)
 	*pB = 7; // 오류
 	pB = &b; // 가능
 
-	int* const pC = &a; // const pointer
+	int* const pC = &a; // const pointer (포인터 상수)
 	*pC = 13; // 가능: pC 가 가리키는 데이터는 상수가 아님.
 	pC = &b; // 오류: pC 자체가 상수임.
 
@@ -214,6 +231,7 @@ void _3()
 	int& const id = i; // redundant: 레퍼런스는 선언 이후부터는 가리키는 대상을 변경할 수 없음.
 	const int& id2 = i; // legal -> id2 가 가리키는 데이터, 즉 i 의 값이 상수.
 	id2++; // 오류: id2 가 가리키는 데이터가 상수.
+	= i++
 }
 
 /*
@@ -240,18 +258,33 @@ void _3()
 
 void _4()
 {
-	class C1
+	// 클래스는 logic 이랑 state (상턔) 포함
+	// 개념체        구현체
+	// state => member variable
+	// logic => member function
+
+	class C2
 	{
+	public:
+		int a;
+	};
+
+	class C1 
+	{
+
 	public:
 		C1() : d(10) // d는 상수 멤버이기에 member initializer list 에서 초기화 해주어야 함.
 		{
+			d = 20;
 			i = 5; // 오류: constructor body 안에서 상수 멤버의 값을 변경할 수 없음.
 		}
 
 		void const_member_func1() const // 멤버 함수를 const 로 선언할 경우에는 const 가 () 뒤에 옴
 		{
+			b.a = 10;
 			f = 5; // 오류: const 멤버 함수 내에서 멤버 변수의 값을 변경할 수 없음.
 			non_const_member_func(); // 오류: const 멤버 함수 내에서 다른 non-const 멤버 함수를 호출할 수 없음.
+			// const 함수에서 const 가 아닌 함수를 호출하는건 금지 (const 가 아닌 함수가 자기자신의 상태를 변경할 수 있기 때문)
 
 			const_member_func2(); // 가능: const 멤버 함수 내에서 다른 const 멤버 함수 호출 가능.
 		}
@@ -263,7 +296,7 @@ void _4()
 
 		void non_const_member_func()
 		{
-
+			f = 10;
 		}
 
 		int public_var1;
@@ -277,6 +310,8 @@ void _4()
 		mutable long l;
 	};
 
+	// member function 은 무조건 어떤 오브젝트에 대해서 호출이 되야함
+
 	const C1 c; // const 오브젝트.
 	c = C1(); // const variable 과 마찬가지로 c의 값을 변경 불가능.
 
@@ -285,4 +320,14 @@ void _4()
 
 	c.public_var1 = 5; // 오류: 상수 오브젝트의 멤버 public_var1 를 변경하려 했기 때문.
 	c.public_var2 = 10; // 가능: c는 상수 오브젝트이지만 public_var2 는 mutable 로 선언됬기 떄문.
+}
+
+int main()
+{
+	display();
+}
+
+void display() // global function (특정 오브젝트를 필요로 하지 않음)
+{
+
 }
