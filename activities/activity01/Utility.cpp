@@ -4,6 +4,8 @@
 #include "Utility.h"
 
 #include <iostream>
+#include <iomanip>
+#include <sstream>
 #include <cstdio>
 #include <vector>
 
@@ -276,6 +278,15 @@ bool Date::Scan()
 	if (ValidateDate(buffer))
 	{
 		Parse(*this, buffer);
+
+/*		std::stringstream stream;
+		stream << m_year << '-'
+			   << std::setw(2) << std::setfill('0') << m_month << '-'
+			   << std::setw(2) << std::setfill('0') << m_day;
+		m_cachedString = stream.str(); */
+
+		m_cachedString = buffer;
+
 		return true;
 	}
 	else
