@@ -4,7 +4,7 @@
 #include "Utility.h"
 
 // 이 comment 아래에 main 함수 정의 및 구현
-int main(void)
+int main2(void)
 {
 	int option;
 
