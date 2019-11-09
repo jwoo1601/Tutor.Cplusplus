@@ -41,6 +41,16 @@ class A
 
 Number var1, var2;
 
+class B
+{
+public:
+
+	B(int param1)
+	{
+
+	}
+};
+
 class Number
 {
 public:
