@@ -209,13 +209,40 @@ void _2()
 			data1 = other.data1;
 			data2 = other.data2;
 			message = other.message;
+
+			data[1] = 5;
 		}
 
 	private:
 		int data1;
 		int* data2;
-		const char* message;
+		const char* message; // c-style string
 	};
+
+	// C 에서 String (문자열) 표현 방식 (array of chars)
+	// ... | H | e | l | l | o | \0 |... => "Hello"
+	// '\0' (null character/terminator) -> ascii code: 0
+	// printf("Hello"); -> 보이지 않는
+
+	// double quote ("") 을 이용해 문자열을 값 형태(literal) 로 넣어주면 자동으로 컴파일러가 맨 뒤에 null character 를 넣어줌.
+	// char str[] = "Hello";
+	// str -> | H | e | l | l | o | \0 |
+
+	// char array 는 초기화 할떄 외에는 string literal 로부터 대입을 받을 수 없음.
+	// char str2[3 + 1];
+	// str2 = "sdd"; (X) illegal
+	// (1) str2[0] = 's';
+	//     str2[1] = 'd';
+	//     str2[2] = 'd';
+	//     str2[3] = '\0';
+	// (2) strcpy(str2, "sdd");
+
+	// array variable 의 이름 자체는 해당 array 의 첫번째 element 를 가리키는 (즉, 첫번쨰 element 의 주소를 가지는) 포인터 variable
+	// const char *msg = "Hello"; // msg 는 여기서 Hello 를 가리키기만 형태
+	// char msg2[6] = "Hello"; // msg2 는 메모리 공간을 새로 할당해서 array 를 만들고 그 안에 Hello 라는 값을 복사함
+
+	// const char *message = "Hello";
+	// message 의 내용을 변경하지 않을 경우
 
 	Shallow s1;
 	Shallow s2 = s1;
@@ -246,7 +273,7 @@ void _2()
 				data2[i] = other.data2[i];
 			}
 
-//			data2 = other.data2;
+			// data2 = other.data2;
 
 			message = other.message;
 		}
@@ -363,6 +390,7 @@ namespace _3
 			// 이 떄, this 는 Car 을 가리키는 포인터 이므로 this 를 dereference 하게 되면 해당 포인터가 가리키는 오브젝트를 의미함.
 			// 또한 this 가 가리키는 대상은 current object 이므로 아래 return 에서는 현재 오브젝트에 대한 reference 를 리턴하는 거로 생각할 수 있음.
 			return *this;
+			// Car *this
 
 			Car &refToThis = *this; // 즉, refToThis 가 가리키는 대상은 current object 임.
 		}
@@ -381,6 +409,8 @@ namespace _3
 			return *this;
 		}
 
+
+		// void obj.DummyFn(Car *this);
 		void DummyFn()
 		{
 			Car obj;
